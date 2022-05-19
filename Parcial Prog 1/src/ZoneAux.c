@@ -9,6 +9,10 @@
 #include "Zone.h"
 #include "Address.h"
 
+#define INACTIVO 0
+#define ACTIVO 1
+#define LIBERADO 2
+
 #define PENDIENTE  0
 #define FINALIZADO 1
 
@@ -148,4 +152,66 @@ void showZones(Zone zoneList[], int len, Censista censistaList[], int censistaLe
 
     printf("**** Fin ****\n");
     system("pause");
+}
+
+void showZonesByActiveCensista(Zone zoneList[], int len, Censista censistaList[], int censistaLen) {
+    int censistaIndex;
+    int censistasActivosCounter = 0;
+    
+    for (int i = 0; i < len; ++i) {
+        if (zoneList[i].is_empty == 0 && zoneList[i].id_censista != -1 && zoneList[i].state == PENDIENTE) {
+            censistaIndex = findCensistaById(censistaList, censistaLen, zoneList[i].id_censista);
+            if (censistaList[censistaIndex].state == ACTIVO) {
+                censistasActivosCounter++;
+            }
+        }
+    }
+    printf("Censistas Activos: %i\n", censistasActivosCounter);
+    system("pause");
+}
+
+void showZoneWithMostAbscents(Zone zoneList[], int len, Location locationList[], int locationLen) {
+    int maxByLocation[locationLen];
+    int locationWithMostAbscentId;
+    int auxCurrentMax = -1;
+    int auxMaxComparator;
+
+    for (int i = 0; i < locationLen; ++i) {
+        maxByLocation[locationList[i].id] = 0;
+    }
+
+    for (int j = 0; j < len; ++j) {
+        if (zoneList[j].state == FINALIZADO) {
+            auxMaxComparator = maxByLocation[zoneList[j].id_location] + zoneList[j].censados_absent;
+            maxByLocation[zoneList[j].id_location] = auxMaxComparator;
+            if (auxMaxComparator > auxCurrentMax) {
+                auxCurrentMax = auxMaxComparator;
+                locationWithMostAbscentId = zoneList[j].id_location;
+            }
+        }
+    }
+
+    if (auxCurrentMax != -1) {
+        int locationIndex = findLocationById(locationList, locationLen, locationWithMostAbscentId);
+        printf("Localidad con mas ausentes: %s (%i personas)\n", locationList[locationIndex].name, auxCurrentMax);
+        system("pause");
+    } else {
+        printf("No hay Zonas con ausentes\n");
+        system("pause");
+    }
+}
+
+int zoneReportsMenu() {
+    int opt;
+
+    printf("**** INFORMES ZONAS ****\n");
+    printf("1- Zona asignada y sin asignar\n");
+    printf("2- Zonas pendientes con censista\n");
+    printf("3- Localidad con mas ausentes\n");
+    printf("4- Salir\n");
+    printf("Opcion: ");
+    fflush(stdin);
+    scanf("%d", &opt);
+
+    return opt;
 }

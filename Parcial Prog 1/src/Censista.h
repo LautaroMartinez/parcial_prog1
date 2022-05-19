@@ -48,7 +48,7 @@ void removeCensista(Censista censistaList[], int censistaLen, Zone zoneList[], i
 ///
 /// @param censistaList
 /// @param len
-void showCensistasMenu(Censista censistaList[], int len);
+void showCensistasMenu(Censista censistaList[], int len, Zone zoneList[], int zoneLen);
 
 /// @brief Asigna un Censista a una Zona
 ///
@@ -65,3 +65,7 @@ void assignZone(Zone zoneList[], int zoneLen, Censista censistaList[], int censi
 /// @param censistaList
 /// @param censistaLen
 void loadZone(Zone zoneList[], int zoneLen, Censista censistaList[], int censistaLen);
+
+
+void showZonesMenu(Zone zoneList[], int len, Censista censistaList[], int censistaLen,
+               Location locationList[], int locationLen);

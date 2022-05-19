@@ -45,3 +45,9 @@ int findZoneByCensistaId(int censistaId, Zone zoneList[], int len);
 /// @param locationLen
 void showZones(Zone zoneList[], int len, Censista censistaList[], int censistaLen,
                Location locationList[], int locationLen);
+
+void showZonesByActiveCensista(Zone zoneList[], int len, Censista censistaList[], int censistaLen);
+
+void showZoneWithMostAbscents(Zone zoneList[], int len, Location locationList[], int locationLen);
+
+int zoneReportsMenu();

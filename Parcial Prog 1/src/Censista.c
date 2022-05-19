@@ -97,7 +97,7 @@ void removeCensista(Censista censistaList[], int censistaLen, Zone zoneList[], i
     }
 }
 
-void showCensistasMenu(Censista censistaList[], int len) {
+void showCensistasMenu(Censista censistaList[], int len, Zone zoneList[], int zoneLen) {
     int loop_menu = 1;
     do {
         switch(reportsMenu()) {
@@ -108,6 +108,12 @@ void showCensistasMenu(Censista censistaList[], int len) {
                 showCensistas(censistaList, len, 0);
                 break;
             case 3:
+                showCensistasBy4Locations(censistaList, len, zoneList, zoneLen);
+                break;
+            case 4:
+                showCensistasWithMostCensados(censistaList, len, zoneList, zoneLen);
+                break;
+            case 5:
                 printf("Volviendo a Menu\n");
                 system("pause");
                 loop_menu = 0;
@@ -197,4 +203,30 @@ void loadZone(Zone zoneList[], int zoneLen, Censista censistaList[], int censist
         printf("Volviendo al Menu\n");
         system("pause");
     }
+}
+
+void showZonesMenu(Zone zoneList[], int len, Censista censistaList[], int censistaLen,
+               Location locationList[], int locationLen) {
+    int loop_menu = 1;
+    do {
+        switch(zoneReportsMenu()) {
+            case 1: ;
+                showZones(zoneList, len, censistaList, censistaLen, locationList, locationLen);
+                break;
+            case 2: ;
+                showZonesByActiveCensista(zoneList, len, censistaList, censistaLen);
+                break;
+            case 3: ;
+                showZoneWithMostAbscents(zoneList, len, locationList, locationLen);
+                break;
+            case 4:
+                printf("Volviendo a Menu\n");
+                system("pause");
+                loop_menu = 0;
+                break;
+            default:
+                printf("Opcion invalida\n");
+                system("pause");
+        }
+    } while(loop_menu);
 }

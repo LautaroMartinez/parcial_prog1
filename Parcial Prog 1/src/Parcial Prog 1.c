@@ -19,15 +19,15 @@ int main(void) {
     setbuf(stdout, NULL);
 
     Location locationList[LEN_LOCATIONS] = {
-        {1, "Dawnstar"},
-        {2, "Falkreath"},
-        {3, "Markarth"},
-        {4, "Morthal"},
-        {5, "Riften"},
-        {6, "Solitude"},
-        {7, "Whiterun"},
-        {8, "Windhelm"}
-    }; 
+        {1, "Avellaneda"},
+        {2, "Lanus"},
+        {3, "Lomas de Zamora"},
+        {4, "Banfield"},
+        {5, "Boedo"},
+        {6, "San Telmo"},
+        {7, "Palermo"},
+        {8, "Chacarita"}
+    };
  
     Censista censistaList[LEN_CENSISTAS];
     Zone zoneList[LEN_ZONES];
@@ -75,7 +75,7 @@ int main(void) {
             case 4: ;
                 any_index = getNotEmptyCensistaIndex(censistaList, LEN_CENSISTAS);
                 if(any_index != -1) {
-                    showCensistasMenu(censistaList, LEN_CENSISTAS);
+                    showCensistasMenu(censistaList, LEN_CENSISTAS, zoneList, LEN_ZONES);
                 } else {
                     printf("No hay censistas para mostrar\n");
                     system("pause");
@@ -132,7 +132,7 @@ int main(void) {
             case 9: ;
                 any_index = getNotEmptyZoneIndex(zoneList, LEN_ZONES);
                 if(any_index != -1) {
-                    showZones(zoneList, LEN_ZONES, censistaList, LEN_CENSISTAS, locationList, LEN_LOCATIONS);
+                    showZonesMenu(zoneList, LEN_ZONES, censistaList, LEN_CENSISTAS, locationList, LEN_LOCATIONS);
                 } else {
                     printf("No hay zonas para mostrar\n");
                     system("pause");

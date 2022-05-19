@@ -34,6 +34,10 @@ int getNotEmptyCensistaIndex(Censista censistaList[], int len);
 /// @param order
 void showCensistas(Censista censistaList[], int len, int order);
 
+void showCensistasBy4Locations(Censista censistaList[], int len, Zone zoneList[], int zoneLen);
+
+void showCensistasWithMostCensados(Censista censistaList[], int len, Zone zoneList[], int zoneLen);
+
 /// @brief Menu principal
 ///
 /// @return
