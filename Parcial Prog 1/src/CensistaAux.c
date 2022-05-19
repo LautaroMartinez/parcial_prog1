@@ -291,3 +291,27 @@ void showCensistasWithMostCensados(Censista censistaList[], int len, Zone zoneLi
         system("pause");
     }
 }
+
+void showCensosByCensistaAndZone(Censista censistaList[], int len, Zone zoneList[], int zoneLen) {
+    int censosByCensista[len];
+    int zonasByCensista[len];
+    int locationWithMostAbscentId;
+
+    for (int i = 0; i < len; ++i) {
+        censosByCensista[censistaList[i].id] = 0;
+        zonasByCensista[censistaList[i].id] = 0;
+    }
+
+    for (int j = 0; j < len; ++j) {
+        if (zoneList[j].state == FINALIZADO) {
+            censosByCensista[zoneList[j].id_censista] = censosByCensista[zoneList[j].id_censista] + zoneList[j].censados_in_place + zoneList[j].censados_virtual;
+            zonasByCensista[zoneList[j].id_censista]++;
+        }
+    }
+
+    for (int i = 0; i < len; ++i) {
+        if (censosByCensista[censistaList[i].id] != 0) {
+            printf("Censista: %s (%i personas/zona)\n", censosByCensista[censistaList[i].id].name, censosByCensista[censistaList[i].id]/zonasByCensista[censistaList[i].id]);
+        }
+    }
+}

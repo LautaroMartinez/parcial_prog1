@@ -38,6 +38,8 @@ void showCensistasBy4Locations(Censista censistaList[], int len, Zone zoneList[]
 
 void showCensistasWithMostCensados(Censista censistaList[], int len, Zone zoneList[], int zoneLen);
 
+void showCensosByCensistaAndZone(Censista censistaList[], int len, Zone zoneList[], int zoneLen);
+
 /// @brief Menu principal
 ///
 /// @return
